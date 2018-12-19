@@ -18,10 +18,15 @@ EOF
 cat <<EOF
   - label: "integration tests"
     command: 
+      - "pwd"
+      - "docker ps"
+      - "hostname"
+      - "find"
       - ".buildkite/integration.sh"
     plugins:
       - docker#v2.1.0:
           image: "arifogel/batfish-docker-build-base:latest"
+          debug: true
           always-pull: true
           volumes:
             - ".:/workdir"

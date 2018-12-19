@@ -32,6 +32,3 @@ python setup.py test
 echo -e "\n  ..... Building documentation"
 python setup.py build_sphinx
 
-echo -e "\n  ..... Running doctests"
-py.test docs pybatfish --doctest-glob='docs/source/*.rst' --doctest-modules
-

@@ -35,5 +35,10 @@ java -cp "$ALLINONE_JAR" org.batfish.allinone.Main -runclient false -coordinator
 #### Running integration tests (require batfish)
 echo -e "\n  ..... Running python integration with batfish"
 retcode=0
-py.test tests/integration
+py.test tests/integration || retcode=$?
+
+echo -e "\n  ..... Running doctests"
+py.test docs pybatfish --doctest-glob='docs/source/*.rst' --doctest-modules
+
+exit ${retcode}
 

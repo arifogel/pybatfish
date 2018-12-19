@@ -16,7 +16,7 @@ steps:
           workdir: "/workdir"
 EOF
 cat <<EOF
-  - label: "integration tests tests"
+  - label: "integration tests"
     command: 
       - ".buildkite/integration.sh"
     plugins:

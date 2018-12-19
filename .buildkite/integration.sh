@@ -6,6 +6,8 @@ export QUESTIONS_DIR=questions
 
 if [ -z "${BATFISH_TAG}" ]; then
   ### If not a triggered build, need to produce artifact and set variables
+  pwd
+  find
   git clone --depth 1 https://github.com/arifogel/batfish.git
   ## Build and save commit info
   pushd batfish

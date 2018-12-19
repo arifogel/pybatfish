@@ -459,12 +459,12 @@ def bf_init_snapshot(upload, name=None, overwrite=False, background=False):
     :return: name of initialized snapshot, or JSON dictionary of task status if background=True
     :rtype: Union[str, Dict]
     """
-    if bf_session.network is None:
-        bf_set_network()
-
     if name is None:
         name = Options.default_snapshot_prefix + get_uuid()
     validate_name(name)
+
+    if bf_session.network is None:
+        bf_set_network()
 
     if name in bf_list_snapshots():
         if overwrite:

@@ -13,6 +13,7 @@ if [ -z "${BATFISH_TAG}" ]; then
   BATFISH_TAG=$(git rev-parse --short HEAD)
   BATFISH_VERSION=$(grep -1 batfish-parent "projects/pom.xml" | grep version | sed 's/[<>]/|/g' | cut -f3 -d\|)
   popd
+  mkdir -p "$(dirname ${ALLINONE_JAR})"
   cp "batfish/projects/allinone/target/allinone-bundle-${BATFISH_VERSION}.jar" "${ALLINONE_JAR}"
   cp -r "batfish/questions" .
 else
@@ -24,6 +25,8 @@ fi
 echo "Using Batfish version ${BATFISH_VERSION}"
 
 # Build and install pybatfish
+python3 -m virtualenv .venv
+. .venv/bin/activate
 pip install -e .[dev,test]
 
 # Start this as early as possible so that batfish has time to start up.

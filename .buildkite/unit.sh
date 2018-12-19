@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -xe
 
+python3 -m virtualenv .venv
+. .venv/bin/activate
 # Build and install pybatfish
 pip install -e .[dev,test]
 

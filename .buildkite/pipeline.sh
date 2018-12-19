@@ -4,6 +4,7 @@ set -e
 
 cat <<EOF
 steps:
+  - command: "pwd && find | sort && ls -l .."
   - label: "lint and unit tests"
     command: 
       - ".buildkite/unit.sh"

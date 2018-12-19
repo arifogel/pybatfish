@@ -19,7 +19,6 @@ cat <<EOF
   - label: "integration tests"
     command: 
       - "pwd"
-      - "docker ps"
       - "hostname"
       - "find"
       - ".buildkite/integration.sh"

@@ -4,7 +4,6 @@ set -e
 
 cat <<EOF
 steps:
-  - command: "pwd && find | sort && ls -l .."
   - label: "lint and unit tests"
     command: 
       - ".buildkite/unit.sh"
@@ -19,14 +18,10 @@ EOF
 cat <<EOF
   - label: "integration tests"
     command: 
-      - "pwd"
-      - "hostname"
-      - "find"
       - ".buildkite/integration.sh"
     plugins:
       - docker#v2.1.0:
           image: "arifogel/batfish-docker-build-base:latest"
-          debug: true
           always-pull: true
           volumes:
             - ".:/workdir"
@@ -47,4 +42,16 @@ EOF
 EOF
   fi
 fi
+
+### Trigger docker tests
+cat <<EOF
+  - wait
+  - label: "Trigger batfish-docker build"
+    trigger: "batfish-docker-pipeline"
+    branches: "master"
+#    build:
+#      env:
+#        PYBATFISH_TAG: "$(git rev-parse --short HEAD)"
+#        PYBATFISH_VERSION: "$(grep -1 batfish-parent 'projects/pom.xml' | grep version | sed 's/[<>]/|/g' | cut -f3 -d\|)"
+EOF
 

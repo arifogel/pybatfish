@@ -43,17 +43,13 @@ EOF
   fi
 fi
 
-### Trigger docker tests for postcommit only. Suppress if PR or triggered build.
-if [ "${BUILDKITE_PULL_REQUEST}" = "false" -a -z "${BUILDKITE_TRIGGERED_FROM_BUILD_ID}" ]; then
+### Upload build artifacts on post-commit
+if [ "${BUILDKITE_PULL_REQUEST}" = "false" ]; then
   cat <<EOF
   - wait
   - label: "Trigger batfish-docker build"
-    trigger: "batfish-docker-pipeline"
+    command: ".buildkite/deploy_artifacts.sh"
     branches: "master"
-#    build:
-#      env:
-#        PYBATFISH_TAG: "$(git rev-parse --short HEAD)"
-#        PYBATFISH_VERSION: "$(grep -1 batfish-parent 'projects/pom.xml' | grep version | sed 's/[<>]/|/g' | cut -f3 -d\|)"
 EOF
 fi
 

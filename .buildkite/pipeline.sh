@@ -47,7 +47,7 @@ fi
 if [ "${BUILDKITE_PULL_REQUEST}" = "false" ]; then
   cat <<EOF
   - wait
-  - label: "Trigger batfish-docker build"
+  - label: "Deploy artifacts"
     command: ".buildkite/deploy_artifacts.sh"
     branches: "master"
 EOF

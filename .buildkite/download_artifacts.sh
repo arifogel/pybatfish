@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 set -x
-. .venv-aws/bin/activate
+. /root/workdir/.venv-aws/bin/activate
 S3_BUCKET="s3://batfish-build-artifacts-arifogel"
 export BATFISH_TAR="artifacts/batfish/dev.tar"
 BATFISH_DIR="$(dirname "${BATFISH_TAR}")"

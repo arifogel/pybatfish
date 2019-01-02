@@ -3,12 +3,14 @@ set -e
 set -x
 python3 -m virtualenv .venv
 . .venv/bin/activate
+PYBATFISH_VERSION="$(python setup.py --version)"
+[ -n "${PYBATFISH_VERSION}" ]
 python setup.py bdist_wheel
 deactivate
-DIST_WHEEL="$(readlink -f "$(find dist -name '*.whl' | head -n1)")"
-[ -n "${DIST_WHEEL}" ]
-WHEEL="$(basename ${DIST_WHEEL})"
-[ -n "${WHEEL}" ]
+BDIST_WHEEL="${PWD}/dist/pybatfish-${PYBATFISH_VERSION}-py2.py3-none-any.whl"
+[ -n "${BDIST_WHEEL}" ]
 mkdir -p workspace
-ln "${DIST_WHEEL}" "workspace/pybatfish.whl"
+pushd workspace
+ln "${BDIST_WHEEL}"
+popd
 

@@ -11,8 +11,8 @@ ARTIFACT_TAR="${PYBATFISH_TAG}.tar"
 mkdir -p "${ARTIFACTS_DIR}"
 tar -czf "${ARTIFACTS_DIR}/integration_tests.tgz" tests/integration
 tar -czf "${ARTIFACTS_DIR}/jupyter_notebooks.tgz" jupyter_notebooks
-export BDIST_WHEEL="${PWD}/dist/pybatfish-${PYBATFISH_VERSION}-py2.py3-none-any.whl"
-[ -n "${BDIST_WHEEL}" ]
+export BDIST_WHEEL="${PWD}/workspace/pybatfish-${PYBATFISH_VERSION}-py2.py3-none-any.whl"
+[ -f "${BDIST_WHEEL}" ]
 cd "${ARTIFACTS_DIR}"
 ln "${BDIST_WHEEL}"
 echo "${PYBATFISH_TAG}" > tag

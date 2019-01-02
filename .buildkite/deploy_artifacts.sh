@@ -14,6 +14,6 @@ echo "${PYBATFISH_TAG}" > tag
 echo "${PYBATFISH_VERSION}" > version
 tar -cf "${ARTIFACT_TAR}" tag version
 ln "${ARTIFACT_TAR}" dev.tar
-buildkite-agent artifact upload "${ARTIFACT_TAR}" "${S3_BUCKET}"
-buildkite-agent artifact upload dev.tar "${S3_BUCKET}"
+buildkite-agent artifact upload "${ARTIFACT_TAR}" "${S3_BUCKET}/${ARTIFACTS_DIR}/"
+buildkite-agent artifact upload dev.tar "${S3_BUCKET}/${ARTIFACTS_DIR}/"
 

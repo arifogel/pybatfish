@@ -16,10 +16,8 @@ steps:
           workdir: "/workdir"
 EOF
 cat <<EOF
-  - command: "which aws || true"
   - label: "integration tests"
     command: 
-      - "which aws || true"
       - ".buildkite/download_artifacts.sh"
       - ".buildkite/integration.sh"
     plugins:

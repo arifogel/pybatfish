@@ -11,7 +11,7 @@ BATFISH_VERSION="$(cat artifacts/batfish/version)"
 
 mkdir -p workspace
 ln "artifacts/batfish/allinone.jar" "${ALLINONE_JAR}"
-tar -x --no-same-owner -f artifacts/batfish/questions.tar
+tar -x --no-same-owner -f artifacts/batfish/questions.tgz
 
 echo "Using Batfish version ${BATFISH_VERSION}"
 

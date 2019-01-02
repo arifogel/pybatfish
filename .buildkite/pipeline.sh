@@ -44,14 +44,14 @@ EOF
 if [ "${BUILDKITE_PULL_REQUEST}" = "false" ]; then
   cat <<EOF
       - artifacts#v1.2.0:
-          upload: "dist/*.whl"
+          upload: "workspace/pybatfish.whl"
   - wait
   - label: "Deploy artifacts"
     command: ".buildkite/deploy_artifacts.sh"
     branches: "master"
     plugins:
       - artifacts#v1.2.0:
-          download: "dist/*.whl"
+          download: "workspace/pybatfish.whl"
 EOF
 fi
 
